@@ -15,16 +15,17 @@
 
     <ion-card-content class="ion-text-center" placeholder="Seleccione un valor"> 
 
-      <form>
-        <ion-select label="Clasificación">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()"> <!--Esto en angular se comoce como una directiva, cuando está entre [], relaciona
+        un html a un objeto en memoria, cuando esta entre (), es reacción a eventos-->
+        <ion-select formControlName="score" label="Clasificación">
           <ion-select-option value="bueno">Bueno</ion-select-option>
           <ion-select-option value="regular">Regular</ion-select-option>
           <ion-select-option value="malo">Malo</ion-select-option>
         </ion-select>
 
-        <ion-textarea label="Opinión" placeholder="Agregue aquí su descripción"></ion-textarea>
+        <ion-textarea formControlName="opinion" label="Opinión" placeholder="Agregue aquí su descripción"></ion-textarea>
 
-        <ion-button type="submit">Enviar</ion-button>
+        <ion-button type="submit" [disabled]="!myForm.valid">Enviar</ion-button>
       </form>
 
     </ion-card-content>
